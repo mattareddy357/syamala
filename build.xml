@@ -64,14 +64,14 @@ Goals :
 		</zip>
 
 	</target>
-	<target name="compile-tests">
+	<!--<target name="compile-tests">
 		<javac srcdir="test"
          destdir="build/test/classes"
          classpath="build/classes"
            />
 	
 	</target>
-	<!--<target name="runtests" depends="package,compile-tests">
+	<target name="runtests" depends="package,compile-tests">
 	
 		<junit dir="build/test/classes" fork="yes">
 						
