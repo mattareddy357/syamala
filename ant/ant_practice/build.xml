@@ -1,0 +1,70 @@
+<project name="myproject" default="runtests">
+
+<target name="clean">
+	<delete dir="build"/>
+	<delete dir="dist"/>
+</target>
+<target name="init" depends="clean">
+	<mkdir dir="build"/>
+	<mkdir dir="build/classes"/>
+	<mkdir dir="build/web"/>
+	<mkdir dir="build/output"/>
+	<mkdir dir="dist"/>
+	<mkdir dir="build/test/classes"/>
+</target>
+
+<target name="compile" depends="init">
+ <javac srcdir="src/java"
+         destdir="build/classes"  
+				 
+  />
+</target>
+
+<target name="jar" depends="compile">
+	<jar destfile="build/output/syamala_1.0.jar" 
+		 basedir="build/classes"/>
+</target>
+
+<target name="copy" depends="jar">
+	<copy todir="build/web">
+    <fileset dir="src/web"/>
+  </copy>
+</target>
+
+<target name="zip" depends="copy">
+	<zip destfile="dist/syamala.zip">
+    <fileset dir="build/output"/>
+    <fileset dir="build/web"/>
+  </zip>
+</target>
+
+<target name="compile-tests" >
+		<javac srcdir="test" classpath="lib/junit.jar"
+         destdir="build/test/classes"
+		 includeantruntime="false"
+        />
+	
+	</target>
+<target name="runtests" depends="zip,compile-tests">
+	
+		<junit dir="build/test/classes" fork="yes">
+	
+	
+						<classpath>
+							<pathelement path="build/jar/syamala_1.0.jar"/>
+							<pathelement path="build/test/classes"/>
+							<pathelement path="lib/junit.jar"/>
+						</classpath>
+						<formatter type="xml"/>
+						<batchtest todir="build/junit">
+							<fileset dir="build/test/classes" >
+								<include name="**/*Test*.java" />
+							</fileset>
+						</batchtest>
+		</junit>
+		
+	
+	</target>   
+
+
+</project>
