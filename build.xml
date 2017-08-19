@@ -33,6 +33,7 @@ Goals :
 	<mkdir dir="build/web"/>
 	<mkdir dir="build/test/classes"/>
 	<mkdir dir="build/junit"/>
+	<mkdir dir="src/java"/>
 
 </target>
 
@@ -49,14 +50,9 @@ Goals :
 
 	</target>
 
-	<target name="copyweb">
-		<copy todir="build/web">
-			<fileset dir="src/web"/>
-		</copy>
+	
 
-	</target>
-
-	<target name="package" depends="jar,copyweb">
+	<target name="package" depends="jar">
 	
 		 <zip destfile="dist/app-${appversion}.zip">
 			<fileset dir="build/jar"/>
