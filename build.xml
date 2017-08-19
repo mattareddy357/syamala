@@ -1,4 +1,4 @@
-<project name="myproject" default="runtests">
+<project name="myproject" default="zip">
 
 <target name="clean">
 	<delete dir="build"/>
@@ -38,7 +38,7 @@
   </zip>
 </target>
 
-<target name="compile-tests" >
+<!--<target name="compile-tests" >
 		<javac srcdir="test" classpath="lib/junit.jar"
          destdir="build/test/classes"
 		 includeantruntime="false"
@@ -64,7 +64,7 @@
 		</junit>
 		
 	
-	</target>   
+	</target>   -->
 
 
 </project>
